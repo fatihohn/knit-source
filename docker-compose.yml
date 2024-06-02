@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  pocketbase:
+    build:
+      dockerfile: ./pocketbase/Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      - nginx
+    container_name: pocketbase
+    restart: unless-stopped
+    volumes:
+      - ./pocketbase/pb_data:/pb_data
+
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    volumes:
+      - ./stirling/trainingData:/usr/share/tesseract-ocr/5/tessdata #Required for extra OCR languages
+      - ./stirling/extraConfigs:/configs
+      - ./stirling/customFiles:/customFiles/
+      - ./stirling/logs:/logs/
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - SYSTEM_ROOTURIPATH=/_pdf/
+  
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/var/log/nginx
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+  
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     # - "80:80" # to redis port
