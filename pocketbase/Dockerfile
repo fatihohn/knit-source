@@ -6,8 +6,7 @@ FROM node:22.2.0-bullseye as builder
 
   WORKDIR $WORKDIR
 
-  COPY ../.env $WORKDIR/.env
-  COPY ../svelte $WORKDIR/svelte
+  COPY ./svelte $WORKDIR/svelte
 
   # config user
   RUN addgroup --system svelte && adduser --system svelte
@@ -28,8 +27,7 @@ FROM ubuntu:22.04
 
   WORKDIR $WORKDIR
 
-  COPY ../.env $WORKDIR/.env
-  COPY ../pocketbase/scripts/docker-entrypoint.sh $WORKDIR/scripts/docker-entrypoint.sh
+  COPY ./scripts/docker-entrypoint.sh $WORKDIR/scripts/docker-entrypoint.sh
 
   RUN wget -O '/tmp/pocketbase.zip' https://github.com/pocketbase/pocketbase/releases/download/v0.22.11/pocketbase_0.22.11_linux_arm64.zip
   RUN unzip /tmp/pocketbase.zip -d /usr/local/bin/

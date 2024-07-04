@@ -1,0 +1,28 @@
+{
+  "name": "knit-source-site",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "jstypes": "npx typedoc --options ./jsvm/typedoc.json",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 110,
+    "svelteBracketNewLine": true
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0",
+    "@sveltejs/kit": "^1.12.0",
+    "luxon": "^3.1.1",
+    "prismjs": "^1.29.0",
+    "sass": "^1.56.2",
+    "svelte": "^3.55.0",
+    "typedoc": "^0.24.8",
+    "typedoc-theme-hierarchy": "^4.0.0",
+    "vite": "^4.0.1"
+  }
+}

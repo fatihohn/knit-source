@@ -3,7 +3,7 @@ version: '3.7'
 services:
   pocketbase:
     build:
-      dockerfile: ./pocketbase/Dockerfile
+      context: ./pocketbase
     env_file:
       - .env
     depends_on:
