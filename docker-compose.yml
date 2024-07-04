@@ -43,3 +43,13 @@ services:
       - .env
     ports:
       - "6379:6379"
+
+  validator:
+    build:
+      context: ./knit-source-validator
+    container_name: validator
+    env_file:
+      - .env
+    ports:
+      - "3010:3010"
+    command: ["npm", "run", "start:prod"]
