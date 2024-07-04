@@ -21,6 +21,5 @@
 go.work
 
 logs/
-nginx/
 pb_data/
 .env
